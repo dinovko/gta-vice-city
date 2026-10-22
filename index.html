@@ -12,7 +12,7 @@ html,body{margin:0;padding:0;overflow:hidden;background:#000;}
 #ctrl{position:absolute;bottom:16px;left:16px;color:#eee;font-size:12px;line-height:1.9;background:rgba(0,0,0,.6);padding:9px 14px;border-radius:8px;border-left:3px solid #ff44aa;}
 #badge{position:absolute;bottom:16px;right:16px;color:#ff88dd;font-size:13px;text-align:right;text-shadow:2px 2px 4px #000;}
 #cross{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:7px;height:7px;border-radius:50%;background:#ff88dd;display:none;box-shadow:0 0 5px #ff44aa;}
-#dbg{position:absolute;top:50px;left:10px;color:lime;font-size:11px;font-family:monospace;}
+#dbg{display:none;}
 </style>
 </head>
 <body>
@@ -174,7 +174,9 @@ function sphG(r,s){
   return mkBuf(V,I);
 }
 function plaG(w,d){const W=w/2,D=d/2;
-  return mkBuf([-W,0,-D,0,1,0,0,0,W,0,-D,0,1,0,1,0,W,0,D,0,1,0,1,1,-W,0,D,0,1,0,0,1],[0,1,2,0,2,3]);
+  // Wind the triangles counter-clockwise seen from above, so the lit face
+  // is the one you stand on and CULL_FACE does not eat the ground.
+  return mkBuf([-W,0,-D,0,1,0,0,0,W,0,-D,0,1,0,1,0,W,0,D,0,1,0,1,1,-W,0,D,0,1,0,0,1],[0,2,1,0,3,2]);
 }
 function cylG(r,h,s){const V=[],I=[];
   for(let i=0;i<=s;i++){const a=2*Math.PI*i/s,nx=Math.cos(a),nz=Math.sin(a);
