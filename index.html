@@ -87,8 +87,9 @@ void main(){
   float amb=.45,dif=1.1;
   if(uUT==1){
     vec2 q=clamp(vU,0.0,1.0);
-    vec2 tc=vec2(0.10+q.x*0.80, 0.07+q.y*0.66);
-    float m=smoothstep(.50,.34,abs(vU.x-.5))*smoothstep(.56,.40,abs(vU.y-.5));
+    vec2 tc=vec2(0.10+q.x*0.80, 0.06+q.y*0.68);
+    float r=length(vec2((vU.x-.5)/.44,(vU.y-.5)/.56));
+    float m=smoothstep(1.0,.70,r);
     c=mix(uC,texture2D(uT,tc).rgb,m);
     amb=.86;dif=.40;
   }
