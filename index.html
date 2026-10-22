@@ -87764,10 +87764,10 @@ function loop() {
   if (model && mv) {
     const spd = (sp ? RUN : WALK) * dt;
     let dx=0, dz=0;
-    if (fw) { dx -= Math.sin(yaw)*spd; dz -= Math.cos(yaw)*spd; }
-    if (bk) { dx += Math.sin(yaw)*spd; dz += Math.cos(yaw)*spd; }
-    if (lt) { dx -= Math.cos(yaw)*spd; dz += Math.sin(yaw)*spd; }
-    if (rt) { dx += Math.cos(yaw)*spd; dz -= Math.sin(yaw)*spd; }
+    if (fw) { dx += Math.sin(yaw)*spd; dz += Math.cos(yaw)*spd; }
+    if (bk) { dx -= Math.sin(yaw)*spd; dz -= Math.cos(yaw)*spd; }
+    if (lt) { dx += Math.cos(yaw)*spd; dz -= Math.sin(yaw)*spd; }
+    if (rt) { dx -= Math.cos(yaw)*spd; dz += Math.sin(yaw)*spd; }
     model.position.x += dx;
     model.position.z += dz;
     if (dx||dz) model.rotation.y = Math.atan2(dx, dz);
